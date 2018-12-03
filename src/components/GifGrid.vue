@@ -65,4 +65,11 @@ export default {
 	}
 }
 
+@media screen and (max-width: 600px) {
+	.grid-item {
+		width: 100%;
+		height: 200px;
+	}
+}
+
 </style>
