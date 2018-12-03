@@ -2,10 +2,15 @@
   <div class="hello">
     <div class="grid">
 		<div class="grid-item" v-for="gif in gifs" v-bind:style="{ 'background-image': 'url(' + gif.images.original.url + ')' }">
-			<div class="grid-info">
-				<span v-if="gif.user">{{ gif.user.display_name }}</span><br />
-				Click to Vue
-			</div>
+			<a :href="gif.bitly_url" target="_blank">
+				<div class="grid-info">
+					<div class="grid-user">
+						<img v-if="gif.user" :src="gif.user.avatar_url" height="35" width="35"><br />
+						<span v-if="gif.user">{{ gif.user.display_name }}</span><br />
+						Click to View
+					</div>
+				</div>
+			</a>	
 		</div>
 	</div>
   </div>
@@ -35,6 +40,11 @@ export default {
 	width: 220px;
 	height: 180px;
 	margin: 10px;
+
+	a {
+		color: #ffffff;
+		text-decoration: none;
+	}
 }
 
 .grid-info {

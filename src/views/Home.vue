@@ -5,10 +5,10 @@
   	</div>
   	<input type="text" class="input" name="query" v-model="query" @keyup="searchGifs" placeholder="Search all of the gifs">
   	<GifGrid v-bind:gifs="searchedGifs" msg="Welcome to Your Vue.js App"/>
-  	<button v-if="query" @click="loadMoreGifs">Load More</button>
+  	<button v-if="query" @click="loadMoreGifs">LOAD MORE</button>
     <h1>TRENDING</h1>
     <GifGrid v-bind:gifs="trendingGifs" msg="Welcome to Your Vue.js App"/>
-	<button @click="loadMoreTrending">Load More</button>
+	<button @click="loadMoreTrending">LOAD MORE</button>
   </div>
 </template>
 
@@ -47,6 +47,7 @@ export default {
 	  this.searchButton = true;
 	  axios.get(url)
         .then(response => this.searchedGifs = response.data.data)
+        .then(console.log(this.searchedGifs))
 	},
 
 	loadMoreTrending: function() {
@@ -94,6 +95,7 @@ export default {
 body {
 	background: rgb(18, 18, 18);
 	color: #ffffff;
+	margin: 30px;
 }
 
 h1 {
@@ -107,13 +109,25 @@ input {
 	padding: 5px 10px;
 	border-width: 0px;
 	margin-bottom: 30px;
+	box-sizing: border-box;
 }
 
 button {
 	border-radius: 0;
-	background: #000000;
+	background: #35495e;
 	color: #ffffff;
 	border-width: 0;
+	font-size: 1.5em;
+	padding: 15px 20px;
+	margin-top: 15px;
+	font-weight: bold;
+	transition: 0.2s;
+
+	&:hover {
+		transition: 0.2s;
+		background: #41b883;
+		cursor: pointer;
+	}
 }
 
 .home {
@@ -129,6 +143,31 @@ button {
 		margin-right: 20px;
 		width: 50px;
 		height: 50px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	h1 {
+		text-align: center;
+	}
+
+	.header {
+		justify-content: center;
+		margin-bottom: 10px;
+	}
+
+	.header h1 {
+		font-size: 1.4em;
+	}
+
+	.header img {
+		margin-right: 10px;
+	}
+
+	input {
+		margin: 0 auto 15px auto;
+		font-size: 1.5em;
+		text-align: center;
 	}
 }
 </style>
